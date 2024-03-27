@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
+interface CalendarProps {
+  onDateChange: (date: string) => void;
+}
 
-const Calendar = ({ onDateChange }) => {
+const Calendar = ({ onDateChange }: CalendarProps) => {
   const [selectedDate, setSelectedDate] = useState('');
 
   // Calcula la fecha mínima (1 de Febrero)
@@ -14,7 +17,7 @@ const Calendar = ({ onDateChange }) => {
 
   // Calcula la fecha máxima para febrero
   const maxDate = new Date(currentYear, 1, isLeapYear ? 29 : 28);
-  const handleDateChange = (event)  => {
+  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>)  => {
     const newDate = event.target.value;
     setSelectedDate(event.target.value);
     onDateChange(newDate)

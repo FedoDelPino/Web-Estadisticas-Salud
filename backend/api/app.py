@@ -1,4 +1,3 @@
-from tarfile import data_filter
 from unittest import result
 from flask import Flask, jsonify
 from flask_cors import CORS
@@ -69,4 +68,5 @@ def filtro_fecha(fila, fecha_dia):
     return mes == 2 and dia == fecha_dia
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port, debug=True)
