@@ -14,6 +14,10 @@ interface Props {
 }
 
 const DynamicChart: React.FC<Props> = ({ data }) => {
+  if (!data) {
+    console.log('Data no esta disponible')
+    return <div>Cargando...</div>
+  }
   // Parsear los datos JSON
   const { json_data, xlsx_data } = data;
   const jsonData: Data[] = JSON.parse(json_data);
