@@ -30,29 +30,31 @@ const DynamicChart: React.FC<Props> = ({ data }) => {
   ];
 
   return (
-    <div style={{ width: '100%', height: '400px' }}>
+    <div className="container-chart"style={{ width: '100%', height: '400px' }}>
       <h2>Gráfico consultas realizadas</h2>
-      <VictoryChart
-        theme={VictoryTheme.material}
-        domainPadding={30}
-        width={600}
-      >
-        <VictoryAxis
-          tickValues={chartData.map(data => data.Fecha)}
-          tickFormat={chartData.map(data => data.Fecha)}
-          style={{ tickLabels: { angle: -25, textAnchor: 'end' } }}
-        />
-        <VictoryAxis dependentAxis />
-        <VictoryBar
-          data={chartData}
-          x="Fecha"
-          y="Total consultas"
-          barWidth={50}
-          style={{ data: { fill: 'cyan' } }}
-          labels={({ datum }) => datum['Total consultas']} // Muestra valores exactos al pasar el cursor
-          labelComponent={<VictoryTooltip />} // Etiqueta flotante
-        />
-      </VictoryChart>
+      <div className='victory-chart'>
+        <VictoryChart
+          theme={VictoryTheme.material}
+          domainPadding={30}
+          width={600}
+        >
+          <VictoryAxis
+            tickValues={chartData.map(data => data.Fecha)}
+            tickFormat={chartData.map(data => data.Fecha)}
+            style={{ tickLabels: { angle: -25, textAnchor: 'end' } }}
+          />
+          <VictoryAxis dependentAxis />
+          <VictoryBar
+            data={chartData}
+            x="Fecha"
+            y="Total consultas"
+            barWidth={50}
+            style={{ data: { fill: '#2ecc71' } }}
+            labels={({ datum }) => datum['Total consultas']} // Muestra valores exactos al pasar el cursor
+            labelComponent={<VictoryTooltip />} // Etiqueta flotante
+          />
+        </VictoryChart>
+      </div>
     </div>
   );
 };

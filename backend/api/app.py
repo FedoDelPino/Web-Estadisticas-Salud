@@ -16,7 +16,6 @@ load_dotenv(dotenv_path)
 api_route = os.environ.get('API_ROUTE')
 api_files = os.environ.get('API_FILES')
 front_url = os.environ.get('FRONT_URL')
-
 # Agregar la aplicacion a politicas de Cors
 CORS(app, resources={r"/api/*": {"origins": front_url}})
 
