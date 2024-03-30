@@ -19,14 +19,14 @@ html {
   position: relative;
   min-height: 100vh;
 }
-
+ /* Imagen Background */
 html::before {
   content: '';
   background-image: url('./assets/fondo-abstracto-mosaico.jpg');
   background-repeat: repeat-y;
   width: 100px;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 }
@@ -37,10 +37,20 @@ html::after {
   background-repeat: repeat-y;
   width: 100px;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   transform: scaleX(-1);
+}
+
+@media (max-width: 1070px) {
+  /* Background responsivo */
+  html::before {
+    width: 30px;
+  }
+  html::after {
+    width: 30px;
+  }
 }
 
 a {
@@ -97,6 +107,7 @@ button:focus-visible {
   }
 }
 
+/* Fuentes */
 .lato-regular {
   font-family: "Lato", sans-serif;
   font-weight: 400;
