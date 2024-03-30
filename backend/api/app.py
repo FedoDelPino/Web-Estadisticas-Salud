@@ -13,14 +13,16 @@ app = Flask(__name__)
 dotenv_path = os.path.join(os.path.dirname(__file__), '../.env')
 load_dotenv(dotenv_path)
 
-api_route = os.environ.get('API_ROUTE')
-api_files = os.environ.get('API_FILES')
-front_url = os.environ.get('FRONT_URL')
+api_route = os.environ.get('API_ROUTE')  # Ruta Api
+api_files = os.environ.get('API_FILES')  # Ruta Archivos
+front_url = os.environ.get('FRONT_URL')  # Ruta URL Front Consultas
 # Agregar la aplicacion a politicas de Cors
 CORS(app, resources={r"/api/*": {"origins": front_url}})
 
+# Endpoint data comparativa
 @app.route(api_route+'<string:fecha_seleccionada>', methods=['GET'])
 def get_data(fecha_seleccionada):
+    # Validar Formato Fecha
     try:
         fecha_Escogida = datetime.fromisoformat(fecha_seleccionada).date()
     except ValueError:
@@ -44,14 +46,16 @@ def get_data(fecha_seleccionada):
     # Enviar datos combinados como JSON
     return jsonify(data_combinada)
 
+# Endpoint data diaria
 @app.route(api_route+'general/<string:fecha_seleccionada>', methods=['GET'])
 def get_data_general(fecha_seleccionada):
+    # Validar Formato Fecha
     try:
         fecha_Escogida = datetime.fromisoformat(fecha_seleccionada).date()
     except ValueError:
         return jsonify({"error": "Formato de fecha incorrecto. Debe ser ISO8601"}), 400
     
-    #  Leer archivo XLSX
+    #  Leer archivo XLSX - Data y Filas
     data_bruta_xlsx = pd.read_excel(api_files+'consultas_febrero_2024.xlsx')
     data_filas_xlsx = pd.read_excel(api_files+'consultas_febrero_2024.xlsx', usecols=[0], header=None)
  
@@ -59,18 +63,21 @@ def get_data_general(fecha_seleccionada):
     return jsonify(datos_xlsx)
 
 
+# Filtrar nombres Filas y data Columnas
 def filtrar_dia(xlsx_data, xlsx_filas, fecha_dia):
     total_filtrado = xlsx_data.iloc[:, fecha_dia].tolist()
     filas = xlsx_filas.iloc[:, 0].tolist()
     filas_filtradas = filas[1:-1]
     datos_completos = {}
 
+    # Rellenar Diccionario con nombre filas y datos columnas
     for nombre_fila, valor in zip(filas_filtradas, total_filtrado):
         datos_completos[nombre_fila] = valor
         
     return datos_completos
 
 
+# Filtrar data columnas 
 def filtrar_xlsx(xlsx_data, fecha_dia, fecha_seleccionada):
     total_filtrado = xlsx_data.iloc[:, fecha_dia].tolist()[5]
     resultado = {"Fecha": fecha_seleccionada, "Total consultas": total_filtrado}
@@ -79,6 +86,7 @@ def filtrar_xlsx(xlsx_data, fecha_dia, fecha_seleccionada):
     return resultado_json
 
 
+# Filtrar data por Fecha desde JSON
 def filtrar_json(json_data, fecha):
     # Aplicar el filtro y convertir el resultado en JSON
     resultado = json.dumps(list(filter(lambda x: filtro_fecha(x, fecha), json_data)))
@@ -92,6 +100,8 @@ def filtro_fecha(fila, fecha_dia):
     # Devolver True si es el día de febrero, de lo contrario False
     return mes == 2 and dia == fecha_dia
 
+
 if __name__ == '__main__':
+    # Definir puerto Host
     port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port, debug=True)

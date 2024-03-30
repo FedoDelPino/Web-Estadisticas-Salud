@@ -1,11 +1,13 @@
 import React from 'react';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryTooltip } from 'victory';
 
+// Tipo Dato para gráfica
 interface Data {
   Fecha: string;
   'Total consultas'?: number;
 }
 
+// Tipo Dato Contenido Llegada
 interface Props {
   data: {
     json_data: string;
@@ -13,11 +15,13 @@ interface Props {
   };
 }
 
-const DynamicChart: React.FC<Props> = ({ data }) => {
+const YearsChart: React.FC<Props> = ({ data }) => {
+  // En caso de no encontrar datos
   if (!data) {
     console.log('Data no esta disponible')
     return <div>Cargando...</div>
   }
+
   // Parsear los datos JSON
   const { json_data, xlsx_data } = data;
   const jsonData: Data[] = JSON.parse(json_data);
@@ -30,18 +34,18 @@ const DynamicChart: React.FC<Props> = ({ data }) => {
   ];
 
   return (
-    <div className="container-chart"style={{ width: '100%', height: '400px' }}>
+    <div className="container-chart-years" style={{ width: '100%', height: '400px' }}>
       <h2>Gráfico consultas realizadas</h2>
-      <div className='victory-chart'>
+      <div className='victory-chart-years'>
         <VictoryChart
           theme={VictoryTheme.material}
-          domainPadding={30}
+          domainPadding={30} // Expansión del dominio en X
           width={600}
         >
           <VictoryAxis
             tickValues={chartData.map(data => data.Fecha)}
             tickFormat={chartData.map(data => data.Fecha)}
-            style={{ tickLabels: { angle: -25, textAnchor: 'end' } }}
+            style={{ tickLabels: { angle: -25, textAnchor: 'end' } }}  // Ángulo etiquetas
           />
           <VictoryAxis dependentAxis />
           <VictoryBar
@@ -60,4 +64,4 @@ const DynamicChart: React.FC<Props> = ({ data }) => {
 };
 
 
-export default DynamicChart;
+export default YearsChart;

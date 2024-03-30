@@ -6,6 +6,7 @@
   text-align: center;
 }
 
+/* Disposicion Paneles de contenido */
 .card {
   background-color: #1e59d5;
   border-radius: 10px;
@@ -14,7 +15,8 @@
   width: 800px;
 }
 
-.card-chart {
+/* Panel de gráfico comparativo de años */
+.card-chart-years {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
@@ -27,6 +29,40 @@
   width: 600px;
 }
 
+/* Texto Panel de gráficos comparativo de años */
+.card-chart-years h2 {
+  color: #445964;
+  font-family: 'Lato' !important;
+  font-weight: 900;
+  font-style: normal;
+  margin-bottom: 10px;
+}
+
+/* Panel de gráfico diario */
+.card-chart-daily {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 50px;
+  width: 500px;
+}
+
+/* Texto Panel de gráfico diario */
+.card-chart-daily h2 {
+  color: #445964;
+  font-family: 'Lato' !important;
+  font-weight: 900;
+  font-style: normal;
+  margin-bottom: 10px;
+  width: 800px;
+}
+
+/* Contenedor de encabezado */
 .container-header {
   color: #1e59d5;
   background-color: #ffffff;
@@ -34,53 +70,7 @@
   border-radius: 15px;
 }
 
-.content-header {
-  display: flex;
-  justify-content: space-around;
-}
-
-.content-image {
-  flex: 1;
-  align-self: center; 
-  max-width: 80px;
-}
-
-.content-header-title {
-  color: #445964;
-  flex: 4; 
-  display: flex;
-  align-items: left;
-  font-family: 'Lato', sans-serif !important;
-  font-style: normal;
-}
-
-.container-calendar {
-  color: #ffffff;
-  border-top: 1px solid #ebebeb;
-  padding: 5px 0 2px 0;
-  margin-top: 30px;
-}
-
-.container-calendar h3 {
-  color: #ffffff;
-  margin-bottom: 5px;
-}
-
-.separador-titulos {
-  /* background: #e15a89; */
-  background: #2ecc71;
-  height: 3px;
-  margin: 0px auto 0;
-  margin-bottom: 20px;
-  text-align: center;
-  width: 20%;
-  border-radius: 5px;
-}
-
-.img-header {
-  width: 50%;
-}
-
+/* Texto Contenedor de encabezado */
 .container-header h3 {
   border-radius: 50px;
   border: 3px solid #2d76fc;
@@ -97,6 +87,7 @@
   width: 30%;
 }
 
+/* Texto Negrita Contenedor de encabezado */
 .container-header h3 strong {
   color: #2d76fc;
   font-family: 'Lato' !important;
@@ -104,44 +95,68 @@
   font-style: normal;
 }
 
-.card-chart h2 {
-  color: #445964;
-  font-family: 'Lato' !important;
-  font-weight: 900;
-  font-style: normal;
-  margin-bottom: 10px;
+/* Contenido encabezado */
+.content-header {
+  display: flex;
+  justify-content: space-around;
 }
 
-.card-chart-2 {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
-  display: inline-block;
+/* Titulo de contenido encabezado */
+.content-header-title {
+  color: #445964;
+  flex: 4; 
+  display: flex;
+  align-items: left;
+  font-family: 'Lato', sans-serif !important;
+  font-style: normal;
+}
+
+/* Contenido imagen en encabezado */
+.content-image {
+  flex: 1;
+  align-self: center; 
+  max-width: 80px;
+}
+
+/* Contenedor Calendario */
+.container-calendar {
+  color: #ffffff;
+  border-top: 1px solid #ebebeb;
+  padding: 5px 0 2px 0;
   margin-top: 30px;
-  margin-bottom: 30px;
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-bottom: 50px;
-  width: 500px;
 }
 
-
-.card-chart-2 h2 {
-  color: #445964;
-  font-family: 'Lato' !important;
-  font-weight: 900;
-  font-style: normal;
-  margin-bottom: 10px;
-  width: 800px;
+/* Texto contenedor calendario */
+.container-calendar h3 {
+  color: #ffffff;
+  margin-bottom: 5px;
 }
 
-.container-chart {
+/* Separador de contenido textual calendario */
+.separador-titulos {
+  background: #2ecc71;
+  height: 3px;
+  margin: 0px auto 0;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 20%;
+  border-radius: 5px;
+}
+
+/* Imagen encabezado */
+.img-header {
+  width: 50%;
+}
+
+/* Contenedor gráfica comparativa años */
+.container-chart-years {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.container-chart-2 {
+/* Contenedor gráfica diaria */
+.container-chart-daily {
   height: 500px;
   padding: 20px;
   display: flex;
@@ -149,46 +164,27 @@
   align-items: center;
 }
 
-.victory-chart-2 {
+/* Componente tabla comparativa años */
+.victory-chart-years {
   margin-bottom: 20px;
 }
 
-.victory-chart {
+/* Componente tabla diaria */
+.victory-chart-daily {
   margin-bottom: 20px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Transiciones para contenedor de gráficas */
+.transition-container {
+  transition: opacity 0.6s ease;
+  opacity: 0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.transition-container.show {
+  transition: opacity 0.6s ease;
+  opacity: 1;
 }
 
 .card {
   padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+// Tipo dato función de llegada
 interface CalendarProps {
   onDateChange: (date: string) => void;
 }
@@ -12,7 +13,7 @@ const Calendar = ({ onDateChange }: CalendarProps) => {
   const currentYear2 = currentDate2.getFullYear();
   const februaryDate = new Date(currentYear2, 1, 1); 
 
-  console.log(februaryDate)
+  // Calcular año bisiesto
   const currentDate = new Date()
   const currentYear = currentDate.getFullYear();
   const isLeapYear = (currentYear % 4 === 0 && currentYear % 100 !== 0) || currentYear % 400 === 0;
