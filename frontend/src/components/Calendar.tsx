@@ -8,9 +8,11 @@ const Calendar = ({ onDateChange }: CalendarProps) => {
   const [selectedDate, setSelectedDate] = useState('');
 
   // Calcula la fecha mínima (1 de Febrero)
-  const minDate = new Date();
-  minDate.setMonth(1); // Febrero (índice 1)
-  minDate.setDate(1); // Primer día del mes
+  const currentDate2 = new Date();
+  const currentYear2 = currentDate2.getFullYear();
+  const februaryDate = new Date(currentYear2, 1, 1); 
+
+  console.log(februaryDate)
   const currentDate = new Date()
   const currentYear = currentDate.getFullYear();
   const isLeapYear = (currentYear % 4 === 0 && currentYear % 100 !== 0) || currentYear % 400 === 0;
@@ -29,7 +31,7 @@ const Calendar = ({ onDateChange }: CalendarProps) => {
         type="date"
         value={selectedDate}
         onChange={handleDateChange}
-        min={minDate.toISOString().split('T')[0]} // Formato YYYY-MM-DD
+        min={februaryDate.toISOString().split('T')[0]} // Formato YYYY-MM-DD
         max={maxDate.toISOString().split('T')[0]} // Formato YYYY-MM-DD
       />
     </div>

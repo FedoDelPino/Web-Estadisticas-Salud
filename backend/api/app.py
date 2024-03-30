@@ -16,7 +16,6 @@ load_dotenv(dotenv_path)
 api_route = os.environ.get('API_ROUTE')
 api_files = os.environ.get('API_FILES')
 front_url = os.environ.get('FRONT_URL')
-
 # Agregar la aplicacion a politicas de Cors
 CORS(app, resources={r"/api/*": {"origins": front_url}})
 
@@ -44,6 +43,32 @@ def get_data(fecha_seleccionada):
 
     # Enviar datos combinados como JSON
     return jsonify(data_combinada)
+
+@app.route(api_route+'general/<string:fecha_seleccionada>', methods=['GET'])
+def get_data_general(fecha_seleccionada):
+    try:
+        fecha_Escogida = datetime.fromisoformat(fecha_seleccionada).date()
+    except ValueError:
+        return jsonify({"error": "Formato de fecha incorrecto. Debe ser ISO8601"}), 400
+    
+    #  Leer archivo XLSX
+    data_bruta_xlsx = pd.read_excel(api_files+'consultas_febrero_2024.xlsx')
+    data_filas_xlsx = pd.read_excel(api_files+'consultas_febrero_2024.xlsx', usecols=[0], header=None)
+ 
+    datos_xlsx = filtrar_dia(data_bruta_xlsx, data_filas_xlsx, fecha_Escogida.day)
+    return jsonify(datos_xlsx)
+
+
+def filtrar_dia(xlsx_data, xlsx_filas, fecha_dia):
+    total_filtrado = xlsx_data.iloc[:, fecha_dia].tolist()
+    filas = xlsx_filas.iloc[:, 0].tolist()
+    filas_filtradas = filas[1:-1]
+    datos_completos = {}
+
+    for nombre_fila, valor in zip(filas_filtradas, total_filtrado):
+        datos_completos[nombre_fila] = valor
+        
+    return datos_completos
 
 
 def filtrar_xlsx(xlsx_data, fecha_dia, fecha_seleccionada):
