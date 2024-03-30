@@ -112,10 +112,45 @@
   margin-bottom: 10px;
 }
 
+.card-chart-2 {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 50px;
+  width: 500px;
+}
+
+
+.card-chart-2 h2 {
+  color: #445964;
+  font-family: 'Lato' !important;
+  font-weight: 900;
+  font-style: normal;
+  margin-bottom: 10px;
+  width: 800px;
+}
+
 .container-chart {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.container-chart-2 {
+  height: 500px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.victory-chart-2 {
+  margin-bottom: 20px;
 }
 
 .victory-chart {

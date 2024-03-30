@@ -2,22 +2,23 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css'
 import DynamicChart from './components/DynamicChart.tsx'
+import DailyChart from './components/DailyChart.tsx'
 import Calendar from './components/Calendar.tsx'
 import imgCorazon from './assets/latido-del-corazon.png'
 
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
-console.log(apiUrl)
 
 interface Data {
     json_data: string;
     xlsx_data: string;
 }
 
+
 function App() {
   
   const [datos, setDatos] = useState<Data | null>(null)
+  const [datosDiarios, setDatosDiarios] = useState<string | null>(null)
   const [fecha, setFecha] = useState<Date | null>(null)
-  
   
   
   const actualizarFecha = (fechas: string) => {
@@ -30,7 +31,9 @@ function App() {
       if (fecha) {
         const fechaISOS = fecha.toISOString().slice(0, 10)
         const response = await axios.get(`${apiUrl}${fechaISOS}`)
+        const responseDaily = await axios.get(`${apiUrl}general/${fechaISOS}`)
         setDatos(response.data)
+        setDatosDiarios(responseDaily.data)
       }
     } catch(error) {
       console.log('Error fetching data', error)
@@ -72,6 +75,11 @@ function App() {
       {datos &&
         <div className='card-chart'>
           <DynamicChart data={datos} />
+        </div>
+      }
+      {datosDiarios &&
+        <div className='card-chart-2'>
+          <DailyChart data={datosDiarios} />
         </div>
       }
     </div>
