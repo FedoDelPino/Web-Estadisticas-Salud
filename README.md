@@ -142,6 +142,7 @@ python app.py
 
 Y ya está, todo el proyecto se encuentra levantado y puedes acceder a la respectiva ruta del frontEnd para poder utilizar la aplicación web
 * No olvides de configurar correctamente la ruta del frontend de "Vite" una vez tengas definida la respectiva ruta de backend para que pueda realizar correctamente las consultas HTTP
+* También considerar que los archivos ".xlsx" y ".json" deben de estar en la carpeta de backend respectiva a "/backend/data/" considerando ajustar rutas o nombres en caso de requerirlo
 
 
 # Captura Pantalla Plataforma
